@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AuthProvider from './providers/AuthProvider';
 import Login from './Components/User/Login';
 import Registration from './Components/User/Registration/Registration';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,15 @@ const router = createBrowserRouter([
       {
         path: "registration",
         element: <Registration></Registration>
+      }
+    ]
+  },
+  {
+    path: 'dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        
       }
     ]
   }

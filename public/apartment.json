@@ -1,0 +1,87 @@
+[
+    {
+      "image": "https://i.ibb.co/JsyvDH7/360-F-331466201-q-V2w-UDOo-LAIg-Ba-Mc9-Mz-Ds-VO6-Rfcr-YZd-F.jpg",
+      "floorNo": 1,
+      "blockName": "A",
+      "apartmentNo": "101",
+      "rent": 1200
+    },
+    {
+      "image": "https://i.ibb.co/G7hmS52/pexels-vecislavas-popa-1643383.jpg",
+      "floorNo": 1,
+      "blockName": "B",
+      "apartmentNo": "102",
+      "rent": 1100
+    },
+    {
+      "image": "https://i.ibb.co/LRv8g88/pexels-vecislavas-popa-1743227.jpg",
+      "floorNo": 2,
+      "blockName": "A",
+      "apartmentNo": "201",
+      "rent": 1300
+    },
+    {
+      "image": "https://i.ibb.co/G7hmS52/pexels-vecislavas-popa-1643383.jpg",
+      "floorNo": 2,
+      "blockName": "B",
+      "apartmentNo": "202",
+      "rent": 1250
+    },
+    {
+      "image": "https://i.ibb.co/LRv8g88/pexels-vecislavas-popa-1743227.jpg",
+      "floorNo": 3,
+      "blockName": "A",
+      "apartmentNo": "301",
+      "rent": 1400
+    },
+    {
+      "image": "https://i.ibb.co/JsyvDH7/360-F-331466201-q-V2w-UDOo-LAIg-Ba-Mc9-Mz-Ds-VO6-Rfcr-YZd-F.jpg",
+      "floorNo": 3,
+      "blockName": "B",
+      "apartmentNo": "302",
+      "rent": 1150
+    },
+    {
+      "image": "https://i.ibb.co/LRv8g88/pexels-vecislavas-popa-1743227.jpg",
+      "floorNo": 4,
+      "blockName": "A",
+      "apartmentNo": "401",
+      "rent": 1500
+    },
+    {
+      "image": "https://i.ibb.co/JsyvDH7/360-F-331466201-q-V2w-UDOo-LAIg-Ba-Mc9-Mz-Ds-VO6-Rfcr-YZd-F.jpg",
+      "floorNo": 4,
+      "blockName": "B",
+      "apartmentNo": "402",
+      "rent": 1200
+    },
+    {
+      "image": "https://i.ibb.co/G7hmS52/pexels-vecislavas-popa-1643383.jpg",
+      "floorNo": 5,
+      "blockName": "A",
+      "apartmentNo": "501",
+      "rent": 1600
+    },
+    {
+      "image": "https://i.ibb.co/LRv8g88/pexels-vecislavas-popa-1743227.jpg",
+      "floorNo": 5,
+      "blockName": "B",
+      "apartmentNo": "502",
+      "rent": 1300
+    },
+    {
+      "image": "https://i.ibb.co/G7hmS52/pexels-vecislavas-popa-1643383.jpg",
+      "floorNo": 6,
+      "blockName": "A",
+      "apartmentNo": "601",
+      "rent": 1700
+    },
+    {
+      "image": "https://i.ibb.co/JsyvDH7/360-F-331466201-q-V2w-UDOo-LAIg-Ba-Mc9-Mz-Ds-VO6-Rfcr-YZd-F.jpg",
+      "floorNo": 6,
+      "blockName": "B",
+      "apartmentNo": "602",
+      "rent": 1400
+    }
+  ]
+  
