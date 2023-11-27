@@ -11,13 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+
 import { Link } from 'react-router-dom';
 
 const pages = [
-  { label: 'Products', path: '/products' },
-  { label: 'Pricing', path: '/pricing' },
-  { label: 'Blog', path: '/blog' },
+  { label: 'Home', path: '/' },
+  { label: 'Apartments', path: '/apartments' },
+  
 ];
 
 const settings = [
@@ -48,14 +48,15 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar position="fixed" sx={{ zIndex: 10, background: '#394251', boxShadow: 'none' }}>
+    //  <AppBar position="fixed" sx={{ zIndex: 10, background: '#394251', boxShadow: 'none' }}>
+    <AppBar position="static" sx={{ background: 'transparent', boxShadow: 'none' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="#Serenity Heaven"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -120,6 +121,25 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+              alignItems: 'center',
+            }}
+          >
+            <Typography sx={{ mr: 2, color: '#0096c7' }}>SERENITY</Typography> HEAVEN
+          </Typography>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

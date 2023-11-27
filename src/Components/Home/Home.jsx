@@ -1,8 +1,16 @@
+import About from "./About";
+import Banner from "./Banner";
+import Coupon from "./Coupon";
+import Location from "./Location";
+
 
 const Home = () => {
     return (
         <div>
-            <h3>this is home</h3>
+            <Banner></Banner>
+            <Coupon></Coupon>
+            <About></About>
+            <Location></Location>
         </div>
     );
 };
