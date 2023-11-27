@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,23 +11,33 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
 
 const pages = [
   { label: 'Home', path: '/' },
   { label: 'Apartments', path: '/apartments' },
-  
-];
-
-const settings = [
-  { label: 'Profile', path: '/profile' },
-  { label: 'Account', path: '/account' },
-  { label: 'Dashboard', path: '/dashboard' },
-  { label: 'Logout', path: '/logout' },
 ];
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigation = useNavigate();
+
+  const handleLogOut = () => {
+    logOut()
+    .then(result => {
+      toast.success(`LogOut Successfully !`, {
+          position: "top-center",
+          autoClose: 3000,
+      });
+      navigation("/login");
+      console.log(result.user);
+  })
+      .catch((error) => console.log(error));
+  };
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -48,7 +58,6 @@ const Navbar = () => {
   };
 
   return (
-    //  <AppBar position="fixed" sx={{ zIndex: 10, background: '#394251', boxShadow: 'none' }}>
     <AppBar position="static" sx={{ background: 'transparent', boxShadow: 'none' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -108,7 +117,7 @@ const Navbar = () => {
             </Menu>
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, justifyContent:'center', display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page.path}
@@ -121,11 +130,12 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
+
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="#menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -141,42 +151,55 @@ const Navbar = () => {
             <Typography sx={{ mr: 2, color: '#0096c7' }}>SERENITY</Typography> HEAVEN
           </Typography>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-               <MenuItem key={setting.path} onClick={handleCloseUserMenu}>
-               {setting.label === 'Profile' ? (
-                 <Typography textAlign="center">{/* Display user's name here */}</Typography>
-               ) : (
-                 <Link to={setting.path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                   <Typography textAlign="center">{setting.label}</Typography>
-                 </Link>
-               )}
-             </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          {user ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src={user.photoURL} />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{user.displayName}</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Button component={Link} to="/dashboard" variant="outlined" sx={{ borderColor: '#EF5350', backgroundColor: '#394251', color: 'white' }}>
+                      Dashboard
+                    </Button>
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleLogOut}>
+                  <Button variant="outlined" sx={{ borderColor: '#EF5350', backgroundColor: '#394251', color: 'white' }}>
+                    LogOut
+                  </Button>
+                </MenuItem>
+              </Menu>
+            </Box>
+          ) : (
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Button component={Link} to="/login" variant="outlined" sx={{ borderColor: '#EF5350', backgroundColor: '#394251', color: 'white' }}>
+                Login
+              </Button>
+            </MenuItem>
+          )}
         </Toolbar>
+        <ToastContainer></ToastContainer>
       </Container>
     </AppBar>
   );

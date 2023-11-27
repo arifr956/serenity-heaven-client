@@ -11,42 +11,43 @@ import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 
 const Registration = () => {
-    const axiosPublic = useAxiosPublic();
-    const { googleSignIn, githubSignIn, createUser, updateUserProfile } = useAuth();
+    //const axiosPublic = useAxiosPublic();
+    //const { googleSignIn, githubSignIn, createUser, updateUserProfile } = useAuth();
+    const {createUser, updateUserProfile } = useAuth();
     const bgImage = 'https://i.ibb.co/q0vmBDR/video-conference-online-business-call-260nw-1793651794.jpg';
     const navigate = useNavigate();
 
-    const handleGithubLogin = () => {
-        githubSignIn()
-            .then(result => {
-                console.log(result.user);
-                const userInfo = {
-                    email: result.user?.email,
-                    name: result.user?.displayName
-                };
-                axiosPublic.post('/users', userInfo)
-                    .then(res => {
-                        console.log(res.data);
-                        navigate('/');
-                    });
-            });
-    };
+     const handleGithubLogin = () => {
+    //     githubSignIn()
+    //         .then(result => {
+    //             console.log(result.user);
+    //             const userInfo = {
+    //                 email: result.user?.email,
+    //                 name: result.user?.displayName
+    //             };
+    //             axiosPublic.post('/users', userInfo)
+    //                 .then(res => {
+    //                     console.log(res.data);
+    //                     navigate('/');
+    //                 });
+    //         });
+     };
 
-    const handleGoogleLogin = () => {
-        googleSignIn()
-            .then(result => {
-                console.log(result.user);
-                const userInfo = {
-                    email: result.user?.email,
-                    name: result.user?.displayName
-                };
-                axiosPublic.post('/users', userInfo)
-                    .then(res => {
-                        console.log(res.data);
-                        navigate('/');
-                    });
-            });
-    };
+     const handleGoogleLogin = () => {
+    //     googleSignIn()
+    //         .then(result => {
+    //             console.log(result.user);
+    //             const userInfo = {
+    //                 email: result.user?.email,
+    //                 name: result.user?.displayName
+    //             };
+    //             axiosPublic.post('/users', userInfo)
+    //                 .then(res => {
+    //                     console.log(res.data);
+    //                     navigate('/');
+    //                 });
+    //         });
+     };
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -90,15 +91,8 @@ const Registration = () => {
                 console.log(loggedUser);
                 updateUserProfile(name, photoURL)
                     .then(() => {
-                        const userInfo = {
-                            name: name,
-                            email: email,
-                            photoURL: photoURL
-                        };
-                        axiosPublic.post('/user', userInfo)
-                            .then(res => {
-                                if (res.data.insertedId) {
-                                    console.log('user added to the database');
+
+                        console.log('user added to the database');
                                     Swal.fire({
                                         position: 'top-end',
                                         icon: 'success',
@@ -107,8 +101,26 @@ const Registration = () => {
                                         timer: 1500
                                     });
                                     navigate('/');
-                                }
-                            });
+
+                        // const userInfo = {
+                        //     name: name,
+                        //     email: email,
+                        //     photoURL: photoURL
+                        // };
+                        // axiosPublic.post('/user', userInfo)
+                        //     .then(res => {
+                        //         if (res.data.insertedId) {
+                        //             console.log('user added to the database');
+                        //             Swal.fire({
+                        //                 position: 'top-end',
+                        //                 icon: 'success',
+                        //                 title: 'User created successfully.',
+                        //                 showConfirmButton: false,
+                        //                 timer: 1500
+                        //             });
+                        //             navigate('/');
+                        //         }
+                        //     });
                     })
                     .catch(error => console.log(error));
             });
