@@ -20,13 +20,13 @@ import Coupon from './Components/Home/Coupon';
 import AdminHome from './Components/Dashboard/Admin/AdminHome';
 import ManageMember from './Components/Dashboard/Admin/ManageMember';
 import Announcements from './Components/Dashboard/Admin/Announcements';
-import Agreements from './Components/Dashboard/Admin/Agreements';
-import MemberHome from './Components/Dashboard/Member/MemberHome';
+
 import UserHome from './Components/Dashboard/User/UserHome';
 import DashboardAnnouncement from './Components/Dashboard/DashboardAnnouncement';
 import PaymentHistory from './Components/Dashboard/Member/PaymentHistory';
 import MakePayment from './Components/Dashboard/Member/MakePayment';
 import AdminRoute from './Routes/AdminRoute';
+import Agreements from './Components/Dashboard/Admin/Agreements';
 
 
 const router = createBrowserRouter([

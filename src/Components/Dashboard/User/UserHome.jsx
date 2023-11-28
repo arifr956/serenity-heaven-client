@@ -29,16 +29,16 @@ const UserHome = () => {
                                             src={user.photoURL}
                                         ></img>
                                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                                            <h2 className="text-sm title-font text-gray-500 tracking-widest">
+                                            <h2 className="text-lg title-font text-gray-900 font-medium tracking-widest">Name :
                                                 {user.displayName}
                                             </h2>
-                                            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+                                            <h1 className="text-gray-900 text-2xl title-font font-medium mb-1">
                                                 {user.email}
                                             </h1>
-                                            <h2 className="text-sm title-font text-gray-600 text-3xl font-medium tracking-widest">
+                                            <h2 className="text-xl title-font text-gray-600 text-2xl font-medium tracking-widest">
                                                 BlockNo :{userAgreement.blockName}
                                             </h2>
-                                            <h1 className="text-gray-900 text-2xl title-font  mb-1">
+                                            <h1 className="text-gray-900 text-xl title-font  mb-1">
                                                 FloorNo :{userAgreement.floorNo}
                                             </h1>
                                             <span className="flex items-center">
@@ -52,9 +52,7 @@ const UserHome = () => {
                                                     <span className="title-font font-medium text-2xl text-gray-900 flex items-center gap-2">
                                                         <BsCalendarDate />
                                                         Date:{' '}
-                                                        {userAgreement.date
-                                                            ? userAgreement.date
-                                                            : userAgreement.status}
+                                                        {userAgreement.accepteDate}
                                                     </span>
                                                 </span>
                                             </div>
@@ -86,24 +84,25 @@ const UserHome = () => {
                                             {user.email}
                                         </h1>
                                         <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                                            BlockNo :None
+                                            BlockNo : None
                                         </h2>
-                                        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                                            floorNo :None
-                                        </h1>
-                                        <div className="flex mb-4">
+                                        <h1 className="text-gray-900 text-xl title-font  mb-1">
+                                                FloorNo : None
+                                            </h1>
                                             <span className="flex items-center">
-                                                <span className="text-gray-600 ml-3 font-medium flex items-center gap-3">
-                                                    RoomNo : None
+                                                    <span className="text-gray-600 ml-3 font-medium flex items-center gap-3">
+                                                        RoomNo : None
+                                                    </span>
                                                 </span>
-                                            </span>
-                                            <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-                                                <span className="title-font font-medium text-2xl text-gray-900 flex items-center gap-2">
-                                                    <BsCalendarDate />
-                                                    Date: None
+                                            <div className="flex">
+                                                
+                                                <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
+                                                    <span className="title-font font-medium text-2xl text-gray-900 flex items-center gap-2">
+                                                        <BsCalendarDate />
+                                                        Date:{' '}None
+                                                    </span>
                                                 </span>
-                                            </span>
-                                        </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

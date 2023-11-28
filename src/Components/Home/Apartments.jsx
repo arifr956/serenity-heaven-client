@@ -40,10 +40,13 @@ const Apartments = () => {
     setPageNumber(selected);
   };
 
+  
+
   const handleAgreement = (_id, apartment) => {
     const { blockName, floorNo, apartmentNo, rent } = apartment;
     console.log(_id);
     if (user && user.email) {
+      const currentDate = new Date().toLocaleDateString('en-GB').split('/').reverse().join('-');
       //send cart item to the database
       const cartItem = {
           apartmentId: _id,
@@ -54,6 +57,7 @@ const Apartments = () => {
           floorNo, 
           apartmentNo, 
           rent,
+          date: currentDate,
       }
       axiosSecure.post('/agreements', cartItem)
           .then(res => {
@@ -62,7 +66,7 @@ const Apartments = () => {
                   Swal.fire({
                       position: "top-center",
                       icon: "success",
-                      title: `${name} booked`,
+                      title: `${apartmentNo} is booked`,
                       showConfirmButton: false,
                       timer: 1500
                   });

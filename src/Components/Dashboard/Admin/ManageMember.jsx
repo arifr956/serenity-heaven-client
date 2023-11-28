@@ -5,6 +5,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const ManageMember = () => {
   const axiosSecure = useAxiosSecure();
+ 
   const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
@@ -12,6 +13,23 @@ const ManageMember = () => {
       return res.data;
     }
   });
+
+  const  handleRemoveMember = (user) => {
+    axiosSecure.patch(`/users/${user._id}`)
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          // position: "top-center",
+          icon: "error",
+          title: `${user.name} is a User Now!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    })
+  }
 
   const handleMakeMember = (user) => {
     axiosSecure.patch(`/users/member/${user._id}`).then((res) => {
@@ -85,11 +103,16 @@ const ManageMember = () => {
                   {user.role === 'admin' ? (
                     'Admin'
                   ) : user.role === 'member' ? (
-                    'Member'
+                    <button
+                      onClick={() => handleRemoveMember(user)}
+                      className="btn btn-md bg-red-400 text-white"
+                    >
+                      Remove Member
+                    </button>
                   ) : (
                     <button
                       onClick={() => handleMakeMember(user)}
-                      className="btn btn-lg bg-red-500 text-white"
+                      className="btn btn-md bg-red-400 text-white"
                     >
                       Make Member
                     </button>
