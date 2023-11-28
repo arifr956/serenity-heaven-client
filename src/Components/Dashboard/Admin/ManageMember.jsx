@@ -15,13 +15,12 @@ const ManageMember = () => {
   });
 
   const  handleRemoveMember = (user) => {
-    axiosSecure.patch(`/users/${user._id}`)
+    axiosSecure.patch(`/users/user/${user._id}`)
     .then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({
-          // position: "top-center",
           icon: "error",
           title: `${user.name} is a User Now!`,
           showConfirmButton: false,
@@ -31,21 +30,21 @@ const ManageMember = () => {
     })
   }
 
-  const handleMakeMember = (user) => {
-    axiosSecure.patch(`/users/member/${user._id}`).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          // position: "top-center",
-          icon: "success",
-          title: `${user.name} is a Member Now!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    });
-  };
+  // const handleMakeMember = (user) => {
+  //   axiosSecure.patch(`/users/member/${user._id}`).then((res) => {
+  //     console.log(res.data);
+  //     if (res.data.modifiedCount > 0) {
+  //       refetch();
+  //       Swal.fire({
+  //         // position: "top-center",
+  //         icon: "success",
+  //         title: `${user.name} is a Member Now!`,
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     }
+  //   });
+  // };
 
   const handleDeleteUser = (user) => {
     Swal.fire({
@@ -110,12 +109,7 @@ const ManageMember = () => {
                       Remove Member
                     </button>
                   ) : (
-                    <button
-                      onClick={() => handleMakeMember(user)}
-                      className="btn btn-md bg-red-400 text-white"
-                    >
-                      Make Member
-                    </button>
+                    'User'
                   )}
                 </td>
                 <td>
