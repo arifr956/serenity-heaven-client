@@ -15,6 +15,18 @@ import AuthProvider from './providers/AuthProvider';
 import Login from './Components/User/Login';
 import Registration from './Components/User/Registration/Registration';
 import Dashboard from './Components/Dashboard/Dashboard';
+import PrivateRoute from './Routes/PrivateRoute';
+import Coupon from './Components/Home/Coupon';
+import AdminHome from './Components/Dashboard/Admin/AdminHome';
+import ManageMember from './Components/Dashboard/Admin/ManageMember';
+import Announcements from './Components/Dashboard/Admin/Announcements';
+import Agreements from './Components/Dashboard/Admin/Agreements';
+import MemberHome from './Components/Dashboard/Member/MemberHome';
+import UserHome from './Components/Dashboard/User/UserHome';
+import DashboardAnnouncement from './Components/Dashboard/DashboardAnnouncement';
+import PaymentHistory from './Components/Dashboard/Member/PaymentHistory';
+import MakePayment from './Components/Dashboard/Member/MakePayment';
+
 
 const router = createBrowserRouter([
   {
@@ -41,11 +53,56 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
+
+       // admin routes
       {
-        
-      }
+        path: "coupons",
+        element: <Coupon></Coupon>
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome></AdminHome>
+      },
+      {
+        path: "manageMember",
+        element: <ManageMember></ManageMember>
+      },
+      {
+        path: "announcements",
+        element: <Announcements></Announcements>
+      },
+      {
+        path: "agreements",
+        element: <Agreements></Agreements>
+      },
+
+      //user routes
+      {
+        path: "userHome",
+        element: <UserHome></UserHome>
+      },
+      {
+        path: "dashboardAnnouncement",
+        element: <DashboardAnnouncement></DashboardAnnouncement>
+      },
+
+      //member routes
+      {
+        path: "memberHome",
+        element: <MemberHome></MemberHome>
+      },
+      {
+        path: "history",
+        element: <PaymentHistory></PaymentHistory>
+      },
+      {
+        path: "makePayment",
+        element: <MakePayment></MakePayment>
+      },
+    
+
     ]
   }
 ]);

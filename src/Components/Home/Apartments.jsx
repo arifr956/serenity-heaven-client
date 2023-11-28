@@ -66,8 +66,7 @@ const Apartments = () => {
                       showConfirmButton: false,
                       timer: 1500
                   });
-                  // refetch cart to update the cart items count
-                  refetch();
+                  
               }
 
           })
