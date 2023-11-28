@@ -47,6 +47,10 @@ const MyForm = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    setFormData({
+                        title: '',
+                        description: '',
+                      });
                 }
             });
     };

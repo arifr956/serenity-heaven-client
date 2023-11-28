@@ -26,6 +26,7 @@ import UserHome from './Components/Dashboard/User/UserHome';
 import DashboardAnnouncement from './Components/Dashboard/DashboardAnnouncement';
 import PaymentHistory from './Components/Dashboard/Member/PaymentHistory';
 import MakePayment from './Components/Dashboard/Member/MakePayment';
+import AdminRoute from './Routes/AdminRoute';
 
 
 const router = createBrowserRouter([
@@ -59,23 +60,23 @@ const router = createBrowserRouter([
        // admin routes
       {
         path: "coupons",
-        element: <Coupon></Coupon>
+        element: <AdminRoute><Coupon></Coupon></AdminRoute>
       },
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
         path: "manageMember",
-        element: <ManageMember></ManageMember>
+        element: <AdminRoute><ManageMember></ManageMember></AdminRoute>
       },
       {
         path: "announcements",
-        element: <Announcements></Announcements>
+        element: <AdminRoute><Announcements></Announcements></AdminRoute>
       },
       {
         path: "agreements",
-        element: <Agreements></Agreements>
+        element: <AdminRoute><Agreements></Agreements></AdminRoute>
       },
 
       //user routes
@@ -91,7 +92,7 @@ const router = createBrowserRouter([
       //member routes
       {
         path: "memberHome",
-        element: <MemberHome></MemberHome>
+        element: <UserHome></UserHome>
       },
       {
         path: "history",
