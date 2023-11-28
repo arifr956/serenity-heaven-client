@@ -17,7 +17,7 @@ const SingleApartment = ({ apartment, handleAgreement}) => {
       </div>
       <span className="font-bold  text-red-600">${rent}</span>
     </div>
-    <button onClick ={()=> handleAgreement(_id)} className="hover:bg-sky-700 text-white bg-red-400 py-2 rounded-md"> Confirm Agreement</button>
+    <button onClick ={()=> handleAgreement(_id, apartment)} className="hover:bg-sky-700 text-white bg-red-400 py-2 rounded-md"> Confirm Agreement</button>
   </div>
 </div>
         </div>

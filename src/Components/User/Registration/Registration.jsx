@@ -1,13 +1,13 @@
-import { useContext } from 'react';
+
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthContext } from "../../../providers/AuthProvider";
+
 import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import Swal from 'sweetalert2';
+
 import useAuth from '../../../hooks/useAuth';
 import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { app } from '../../../firebase/firebase.config';
@@ -29,7 +29,8 @@ const Registration = () => {
             .then(result => {
                 const userInfo = {
                     email: result.user?.email,
-                    name: result.user?.displayName
+                    name: result.user?.displayName,
+                    photoURL: result.user?.photoURL
                 }
                 axiosPublic.post('/users', userInfo)
                     .then((res) => {
@@ -52,7 +53,8 @@ const Registration = () => {
                 console.log(result.user);
                 const userInfo = {
                     email: result.user?.email,
-                    name: result.user?.displayName
+                    name: result.user?.displayName,
+                    photoURL: result.user?.photoURL
                 }
                 axiosPublic.post('/users', userInfo)
                     .then(res => {

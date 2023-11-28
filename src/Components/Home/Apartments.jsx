@@ -9,14 +9,17 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 import "./Pagination.css";
+import Swal from "sweetalert2";
 
 
 const Apartments = () => {
   const [apartments] = useApartments();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   // Pagination
   const [pageNumber, setPageNumber] = useState(0);
@@ -37,11 +40,54 @@ const Apartments = () => {
     setPageNumber(selected);
   };
 
-  const handleAgreement = (_id) => {
+  const handleAgreement = (_id, apartment) => {
+    const { blockName, floorNo, apartmentNo, rent } = apartment;
     console.log(_id);
-    if (!user) {
-      return navigate("/login");
-    }
+    if (user && user.email) {
+      //send cart item to the database
+      const cartItem = {
+          apartmentId: _id,
+          email: user.email,
+          userName: user.displayName,
+          status: 'pending',
+          blockName, 
+          floorNo, 
+          apartmentNo, 
+          rent,
+      }
+      axiosSecure.post('/agreements', cartItem)
+          .then(res => {
+              console.log(res.data)
+              if (res.data.insertedId) {
+                  Swal.fire({
+                      position: "top-center",
+                      icon: "success",
+                      title: `${name} booked`,
+                      showConfirmButton: false,
+                      timer: 1500
+                  });
+                  // refetch cart to update the cart items count
+                  refetch();
+              }
+
+          })
+  }
+  else {
+      Swal.fire({
+          title: "You are not Logged In",
+          text: "Please login to Confirm Agreement?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, login!"
+      }).then((result) => {
+          if (result.isConfirmed) {
+              //   send the user to the login page
+              navigate('/login', { state: { from: location } })
+          }
+      });
+  }
   };
 
   useEffect(() => {
