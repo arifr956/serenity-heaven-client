@@ -30,7 +30,8 @@ const Registration = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
-                    photoURL: result.user?.photoURL
+                    photoURL: result.user?.photoURL,
+                    role: 'user'
                 }
                 axiosPublic.post('/users', userInfo)
                     .then((res) => {
@@ -54,7 +55,8 @@ const Registration = () => {
                 const userInfo = {
                     email: result.user?.email,
                     name: result.user?.displayName,
-                    photoURL: result.user?.photoURL
+                    photoURL: result.user?.photoURL,
+                    role: 'user'
                 }
                 axiosPublic.post('/users', userInfo)
                     .then(res => {
@@ -123,7 +125,8 @@ const Registration = () => {
                         const userInfo = {
                             name: name,
                             email: email,
-                            photoURL: photoURL
+                            photoURL: photoURL,
+                            role: 'user'
                         };
                         axiosPublic.post('/users', userInfo)
                             .then(res => {

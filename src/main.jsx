@@ -16,7 +16,7 @@ import Login from './Components/User/Login';
 import Registration from './Components/User/Registration/Registration';
 import Dashboard from './Components/Dashboard/Dashboard';
 import PrivateRoute from './Routes/PrivateRoute';
-import Coupon from './Components/Home/Coupon';
+
 import AdminHome from './Components/Dashboard/Admin/AdminHome';
 import ManageMember from './Components/Dashboard/Admin/ManageMember';
 import Announcements from './Components/Dashboard/Admin/Announcements';
@@ -27,6 +27,7 @@ import PaymentHistory from './Components/Dashboard/Member/PaymentHistory';
 import MakePayment from './Components/Dashboard/Member/MakePayment';
 import AdminRoute from './Routes/AdminRoute';
 import Agreements from './Components/Dashboard/Admin/Agreements';
+import CouponsPage from './Components/Dashboard/Admin/CouponsPage';
 
 
 const router = createBrowserRouter([
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
        // admin routes
       {
         path: "coupons",
-        element: <AdminRoute><Coupon></Coupon></AdminRoute>
+        element: <AdminRoute><CouponsPage></CouponsPage></AdminRoute>
       },
       {
         path: "adminHome",
