@@ -9,45 +9,64 @@ import { Helmet } from 'react-helmet-async';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { app } from '../../../firebase/firebase.config';
 
 const Registration = () => {
-    //const axiosPublic = useAxiosPublic();
-    //const { googleSignIn, githubSignIn, createUser, updateUserProfile } = useAuth();
-    const {createUser, updateUserProfile } = useAuth();
+    const axiosPublic = useAxiosPublic();
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
+    const { createUser, updateUserProfile } = useAuth();
     const bgImage = 'https://i.ibb.co/q0vmBDR/video-conference-online-business-call-260nw-1793651794.jpg';
     const navigate = useNavigate();
 
-     const handleGithubLogin = () => {
-    //     githubSignIn()
-    //         .then(result => {
-    //             console.log(result.user);
-    //             const userInfo = {
-    //                 email: result.user?.email,
-    //                 name: result.user?.displayName
-    //             };
-    //             axiosPublic.post('/users', userInfo)
-    //                 .then(res => {
-    //                     console.log(res.data);
-    //                     navigate('/');
-    //                 });
-    //         });
-     };
+    //github login
+    const handleGithubLogin = () => {
 
-     const handleGoogleLogin = () => {
-    //     googleSignIn()
-    //         .then(result => {
-    //             console.log(result.user);
-    //             const userInfo = {
-    //                 email: result.user?.email,
-    //                 name: result.user?.displayName
-    //             };
-    //             axiosPublic.post('/users', userInfo)
-    //                 .then(res => {
-    //                     console.log(res.data);
-    //                     navigate('/');
-    //                 });
-    //         });
-     };
+        signInWithPopup(auth, githubProvider)
+            .then(result => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then((res) => {
+                        console.log(res.data);
+                        toast.success(`Successfully Logged In with Github!`, {
+                            position: 'top-center',
+                            autoClose: 3000,
+                        });
+                        navigate(location?.state ? location.state : '/');
+                    })
+            })
+
+    }
+
+    //  //google login
+    const handleGoogleLogin = () => {
+
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                console.log(result.user);
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        toast.success(`Sucessfully Logged In with Google!`, {
+                            position: "top-center",
+                            autoClose: 3000,
+                        });
+                        navigate(location?.state ? location.state : '/');
+                        console.log(result.user);
+                    })
+            })
+
+    }
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -93,34 +112,28 @@ const Registration = () => {
                     .then(() => {
 
                         console.log('user added to the database');
-                                    Swal.fire({
-                                        position: 'top-end',
-                                        icon: 'success',
-                                        title: 'User created successfully.',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    navigate('/');
+                        toast.success(`User created Sucessfully!`, {
+                            position: "top-center",
+                            autoClose: 3000,
+                        });
+                        navigate(location?.state ? location.state : '/');
 
-                        // const userInfo = {
-                        //     name: name,
-                        //     email: email,
-                        //     photoURL: photoURL
-                        // };
-                        // axiosPublic.post('/user', userInfo)
-                        //     .then(res => {
-                        //         if (res.data.insertedId) {
-                        //             console.log('user added to the database');
-                        //             Swal.fire({
-                        //                 position: 'top-end',
-                        //                 icon: 'success',
-                        //                 title: 'User created successfully.',
-                        //                 showConfirmButton: false,
-                        //                 timer: 1500
-                        //             });
-                        //             navigate('/');
-                        //         }
-                        //     });
+                        const userInfo = {
+                            name: name,
+                            email: email,
+                            photoURL: photoURL
+                        };
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    console.log('user added to the database');
+                                    toast.success(`User created Sucessfully!`, {
+                                        position: "top-center",
+                                        autoClose: 3000,
+                                    });
+                                    navigate(location?.state ? location.state : '/');
+                                }
+                            });
                     })
                     .catch(error => console.log(error));
             });

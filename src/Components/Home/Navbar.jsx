@@ -96,7 +96,7 @@ const Navbar = () => {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
+                vertical: 'top',
                 horizontal: 'left',
               }}
               keepMounted
@@ -116,6 +116,7 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
+
 
           <Box sx={{ flexGrow: 1, justifyContent:'center', display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (

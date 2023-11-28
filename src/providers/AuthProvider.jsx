@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 
-//import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
     
-    //const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -26,15 +26,15 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    // const googleSignIn = () => {
-    //     setLoading(true);
-    //     return signInWithPopup(auth, googleProvider);
-    // }
+     const googleSignIn = () => {
+        setLoading(true);
+         return signInWithPopup(auth, googleProvider);
+     }
 
-    // const githubSignIn = () => {
-    //     setLoading(true);
-    //     return signInWithPopup(auth, githubProvider);
-    // }
+     const githubSignIn = () => {
+         setLoading(true);
+         return signInWithPopup(auth, githubProvider);
+     }
 
     const logOut = () => {
         setLoading(true);
@@ -52,24 +52,24 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser);
 
             setLoading(true);
-            // if (currentUser) {
-            //     // get token and store client
-            //     const userInfo = { email: currentUser.email };
-            //     axiosPublic.post('/jwt', userInfo)
-            //         .then(res => {
-            //             if (res.data.token) {
-            //                 localStorage.setItem('access-token', res.data.token);
-            //                 setLoading(false);
-            //             }
-            //         })
-            // } else {
-            //     // TODO: remove token (if token stored on the client side: Local storage, caching, in memory)
-            //     localStorage.removeItem('access-token');
-            //     setLoading(false);
-            // }
+            if (currentUser) {
+                // get token and store client
+                const userInfo = { email: currentUser.email };
+                axiosPublic.post('/jwt', userInfo)
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token);
+                            setLoading(false);
+                        }
+                    })
+            } else {
+                // TODO: remove token (if token stored on the client side: Local storage, caching, in memory)
+                localStorage.removeItem('access-token');
+                setLoading(false);
+            }
         });
         return () => unsubscribe();
-    }, []); //axiosPublic
+    }, [axiosPublic]); 
 
     const authInfo = {
         user,

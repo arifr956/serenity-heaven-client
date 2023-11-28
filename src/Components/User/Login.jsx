@@ -1,59 +1,81 @@
-// //import { useContext } from 'react';
+
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../providers/AuthProvider";
-// // import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
-// // import app from '../../firebase/firebase.config';
+
 import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
-//import useAuth from '../../hooks/useAuth';
+
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { app } from '../../firebase/firebase.config';
 
 const Login = () => {
 
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
+
 
   const from = location.state?.from?.pathname || "/";
   console.log('state in the location login page', location.state)
 
 
 
-  //     const auth = useAuth();
-  //     // const auth = getAuth(app);
-  //     const googleProvider = new GoogleAuthProvider();
-  //     const githubProvider = new GithubAuthProvider();
 
-  //     //github login
-      const handleGithubLogin = () =>{
-  //       signInWithPopup(auth,githubProvider)
-  //       .then(result => {
-  //         toast.success(`Sucessfully Logged In with Github!`, {
-  //             position: "top-center",
-  //             autoClose: 3000,
-  //         });
-  //         navigate(location?.state ? location.state : '/');
-  //         console.log(result.user);
-    //   })
-  //     .catch()
-      }
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  //github login
+  const handleGithubLogin = () => {
+
+    signInWithPopup(auth, githubProvider)
+      .then(result => {
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName
+        }
+        axiosPublic.post('/users', userInfo)
+          .then((res) => {
+            console.log(res.data);
+            toast.success(`Successfully Logged In with Github!`, {
+              position: 'top-center',
+              autoClose: 3000,
+            });
+            navigate(location?.state ? location.state : '/');
+          })
+      })
+
+  }
 
   //  //google login
-       const handleGoogleLogin = () =>{
-  //           signInWithPopup(auth,googleProvider)
-  //           .then(result => {
-  //             toast.success(`Sucessfully Logged In with Google!`, {
-  //                 position: "top-center",
-  //                 autoClose: 3000,
-  //             });
-  //             navigate(location?.state ? location.state : '/');
-  //             console.log(result.user);
-  //         })
-  //         .catch()
-       }
+  const handleGoogleLogin = () => {
+
+    signInWithPopup(auth, googleProvider)
+      .then(result => {
+        console.log(result.user);
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName
+        }
+        axiosPublic.post('/users', userInfo)
+          .then(res => {
+            console.log(res.data);
+            toast.success(`Sucessfully Logged In with Google!`, {
+              position: "top-center",
+              autoClose: 3000,
+            });
+            navigate(location?.state ? location.state : '/');
+            console.log(result.user);
+          })
+      })
+
+  }
 
 
   const handleLogin = e => {
