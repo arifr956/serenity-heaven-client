@@ -42,7 +42,7 @@ const UserHome = () => {
 
                                 <TableContainer component={Paper}>
                                     <Table>
-                                        <TableHead>
+                                        <TableHead style={{ border: '1px solid #EF5350' }}>
                                             <TableRow style={{ backgroundColor: '#394251'}}>
                                                 <TableCell style={{ color: 'white' }}>Floor No</TableCell>
                                                 <TableCell style={{ color: 'white' }}>Block Name</TableCell>
@@ -53,7 +53,7 @@ const UserHome = () => {
                                         </TableHead>
                                         <TableBody>
                                             {userAgreements.map((userAgreement) => (
-                                                <TableRow key={userAgreement._id}>
+                                                <TableRow style={{ border: '1px solid #EF5350' }} key={userAgreement._id}>
                                                     <TableCell>{userAgreement.floorNo}</TableCell>
                                                     <TableCell>{userAgreement.blockName}</TableCell>
                                                     <TableCell>{userAgreement.apartmentNo}</TableCell>

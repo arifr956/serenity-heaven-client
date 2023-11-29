@@ -127,8 +127,8 @@ const CouponsPage = () => {
      
       <TableContainer component={Paper}>
         <Table>
-          <TableHead>
-            <TableRow>
+          <TableHead style={{ border: '1px solid #EF5350' }}>
+            <TableRow style={{ backgroundColor: '#394251' }}>
               <TableCell>Coupon Code</TableCell>
               <TableCell>Discount Percentage</TableCell>
               <TableCell>Coupon Description</TableCell>
@@ -137,7 +137,7 @@ const CouponsPage = () => {
           </TableHead>
           <TableBody>
             {coupons.map((coupon) => (
-              <TableRow key={coupon._id}>
+              <TableRow style={{ border: '1px solid #EF5350' }} key={coupon._id}>
                 <TableCell>{coupon.code}</TableCell>
                 <TableCell>{coupon.percentage}</TableCell>
                 <TableCell>{coupon.description}</TableCell>

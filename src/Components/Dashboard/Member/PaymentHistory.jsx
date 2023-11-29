@@ -40,7 +40,7 @@ const PaymentHistory = () => {
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead  style={{ border: '1px solid #EF5350' }}>
-                            <TableRow>
+                            <TableRow style={{ backgroundColor: '#394251' }}>
                                 <TableCell>Email</TableCell>
                                 <TableCell>Floor</TableCell>
                                 <TableCell>Block Name</TableCell>
