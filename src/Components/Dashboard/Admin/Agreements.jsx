@@ -35,15 +35,23 @@ const Agreements = () => {
                 const memberRes = await axiosSecure.patch(`/users/${a.email}`);
     
                 if (memberRes.data.modifiedCount > 0) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Agreements Accepted!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                    console.log('Memeber Created');
+
+                    const apartmentRes = await axiosSecure.patch(`/apartments/apartment/${a.apartmentId}`);
     
+                    if(apartmentRes.data.modifiedCount > 0)
+                    {
+                        console.log('Apartment booked');
+                    }
                 }
-                else{
+                 //change apartment status
+                const apartmentRes = await axiosSecure.patch(`/apartments/apartment/${a.apartmentId}`);
+    
+                if(apartmentRes.data.modifiedCount > 0)
+                {
+                    console.log('Apartment booked');
+                }
+                
                     Swal.fire({
                         icon: 'success',
                         title: 'Agreements Accepted!',
@@ -51,7 +59,7 @@ const Agreements = () => {
                         timer: 1500
                     });
     
-                } 
+            
             } 
         } catch (error) {
             // Handle any unexpected errors
