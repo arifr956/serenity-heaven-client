@@ -39,20 +39,22 @@ const MakePayment = () => {
             {isMember && (
                 <TableContainer component={Paper}>
                     <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Email</TableCell>
-                                <TableCell>Floor</TableCell>
-                                <TableCell>Block Name</TableCell>
-                                <TableCell>ApartmentNo</TableCell>
-                                <TableCell>Rent</TableCell>
-                                <TableCell>Month</TableCell>
-                                <TableCell>Pay Now</TableCell>
+                        <TableHead style={{ border: '1px solid #EF5350' }}>
+
+                            <TableRow style={{ backgroundColor: '#394251' }}>
+                                <TableCell style={{ color: 'white' }}>Email</TableCell>
+                                <TableCell style={{ color: 'white' }}>Floor No</TableCell>
+                                <TableCell style={{ color: 'white' }}>Block Name</TableCell>
+                                <TableCell style={{ color: 'white' }}>Apartment No</TableCell>
+                                <TableCell style={{ color: 'white' }}>Rent</TableCell>
+                                <TableCell style={{ color: 'white' }}>Month</TableCell>
+                                <TableCell style={{ color: 'white' }}>Pay Now</TableCell>
                             </TableRow>
+
                         </TableHead>
                         <TableBody>
                             {bookedApartments.map((book) => (
-                                <TableRow key={book._id}>
+                                <TableRow  style={{ border: '1px solid #EF5350' }} key={book._id }>
                                     <TableCell>{book.userEmail}</TableCell>
                                     <TableCell>{book.floorNo}</TableCell>
                                     <TableCell>{book.blockName}</TableCell>

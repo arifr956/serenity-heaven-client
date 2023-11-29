@@ -10,9 +10,9 @@ const Dashboard = () => {
 
   return (
 
-    <div className="flex">
+    <div className="flex flex-col md:flex-row">
       {/* dashboard side bar */}
-      <div className="w-64 min-h-screen bg-red-400 text-white">
+      <div className="w-full md:w-64 md:min-h-screen bg-red-400 text-white">
         <ul className="menu p-4">
          {/* admin email: arif@gmail.com password: Arif12@ */}
           {isAdmin ? (

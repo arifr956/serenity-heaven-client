@@ -39,7 +39,7 @@ const PaymentHistory = () => {
             {isMember && (
                 <TableContainer component={Paper}>
                     <Table>
-                        <TableHead>
+                        <TableHead  style={{ border: '1px solid #EF5350' }}>
                             <TableRow>
                                 <TableCell>Email</TableCell>
                                 <TableCell>Floor</TableCell>
@@ -52,7 +52,7 @@ const PaymentHistory = () => {
                         </TableHead>
                         <TableBody>
                             {myHistory.map((book) => (
-                                <TableRow key={book._id}>
+                                <TableRow  style={{ border: '1px solid #EF5350' }} key={book._id}>
                                     <TableCell>{book.userEmail}</TableCell>
                                     <TableCell>{book.floorNo}</TableCell>
                                     <TableCell>{book.blockName}</TableCell>

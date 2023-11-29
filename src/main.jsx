@@ -95,7 +95,7 @@ const router = createBrowserRouter([
       //member routes
       {
         path: "memberHome",
-        element: <MemberRoute><UserHome></UserHome></MemberRoute>
+        element: <UserHome></UserHome>
       },
       {
         path: "history",
