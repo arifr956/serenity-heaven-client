@@ -5,6 +5,7 @@ import { Button, Modal, TextField, Table, TableBody, TableCell, TableContainer, 
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const CouponsPage = () => {
   const axiosSecure = useAxiosSecure();
@@ -80,6 +81,9 @@ const CouponsPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Serenity Heaven | Coupons</title>
+      </Helmet>
       <Button variant="contained" color="primary" onClick={() => setOpenModal(true)}>
         Add Coupon
       </Button>

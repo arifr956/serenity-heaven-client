@@ -31,6 +31,7 @@ const Apartments = () => {
     pagesVisited,
     pagesVisited + apartmentsPerPage
   );
+  console.log('in apartment compoment',displayedApartments);
 
   // Total number of pages
   const pageCount = Math.ceil(apartments.length / apartmentsPerPage);
@@ -107,7 +108,7 @@ const Apartments = () => {
         <SectionTitle heading="Our Apartments" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-3 gap-5">
-          {displayedApartments.map((apartment) => (
+          {displayedApartments?.map((apartment) => (
             <div key={apartment._id} className="mx-auto">
               <SingleApartment
                 handleAgreement={handleAgreement}

@@ -28,6 +28,7 @@ import MakePayment from './Components/Dashboard/Member/MakePayment';
 import AdminRoute from './Routes/AdminRoute';
 import Agreements from './Components/Dashboard/Admin/Agreements';
 import CouponsPage from './Components/Dashboard/Admin/CouponsPage';
+import PayNow from './Components/Dashboard/Member/PayNow';
 
 
 const router = createBrowserRouter([
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "makePayment",
         element: <MakePayment></MakePayment>
+      },
+      {
+        path: "payNow",
+        element: <PayNow></PayNow>
       },
     
 

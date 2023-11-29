@@ -4,6 +4,7 @@ import SectionTitle from '../../Home/SectionTitle';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const useStyles = makeStyles(() => ({
     form: {
@@ -57,6 +58,9 @@ const MyForm = () => {
 
     return (
         <>
+        <Helmet>
+        <title>Serenity Heaven | Manage Announcement</title>
+      </Helmet>
             <SectionTitle heading="Make announcement"></SectionTitle>
             <form className={classes.form}>
                 <FormControl fullWidth>
