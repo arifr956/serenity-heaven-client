@@ -29,6 +29,7 @@ import AdminRoute from './Routes/AdminRoute';
 import Agreements from './Components/Dashboard/Admin/Agreements';
 import CouponsPage from './Components/Dashboard/Admin/CouponsPage';
 import PayNow from './Components/Dashboard/Member/PayNow';
+import MemberRoute from './Routes/MemberRoute';
 
 
 const router = createBrowserRouter([
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
 
-       // admin routes
+      // admin routes
       {
         path: "coupons",
         element: <AdminRoute><CouponsPage></CouponsPage></AdminRoute>
@@ -94,21 +95,23 @@ const router = createBrowserRouter([
       //member routes
       {
         path: "memberHome",
-        element: <UserHome></UserHome>
+        element: <MemberRoute><UserHome></UserHome></MemberRoute>
       },
       {
         path: "history",
-        element: <PaymentHistory></PaymentHistory>
+        element: <MemberRoute><PaymentHistory></PaymentHistory></MemberRoute>
       },
       {
         path: "makePayment",
-        element: <MakePayment></MakePayment>
+        element: <MemberRoute><MakePayment></MakePayment></MemberRoute>
       },
       {
-        path: "payNow",
-        element: <PayNow></PayNow>
-      },
-    
+        path: "makePayment/payNow/:id",
+        element: <MemberRoute><PayNow></PayNow></MemberRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params.id}`)
+      }
+
+
 
     ]
   }

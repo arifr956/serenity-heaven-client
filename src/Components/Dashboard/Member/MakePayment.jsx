@@ -7,6 +7,7 @@ import { FaCcStripe } from "react-icons/fa";
 import { useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const MakePayment = () => {
     const [isMember] = useMember();
@@ -33,10 +34,10 @@ const MakePayment = () => {
     console.log(bookedApartments);
 
     return (
-            <div>
-                <SectionTitle heading="Your Booked List"></SectionTitle>
-                {isMember && (
-                    <TableContainer component={Paper}>
+        <div>
+            <SectionTitle heading="Your Booked List"></SectionTitle>
+            {isMember && (
+                <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
                             <TableRow>
@@ -58,14 +59,18 @@ const MakePayment = () => {
                                     <TableCell>{book.apartmentNo}</TableCell>
                                     <TableCell>{book.rent}</TableCell>
                                     <TableCell> add a month picker here</TableCell>
-                                    <TableCell><FaCcStripe className="text-red-400 text-2xl text-center" /></TableCell>
+                                    <TableCell>
+                                        <Link to={`payNow/${book._id}`}>
+                                            <FaCcStripe className="text-red-400 text-2xl text-center" />
+                                        </Link>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
-                )}
-            </div>
+            )}
+        </div>
     );
 };
 
