@@ -13,7 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
 const PayNow = () => {
-    const { _id, image, floorNo, blockName, apartmentNo, rent, status, userEmail } = useLoaderData();
+    const apartment = useLoaderData();
+    const { _id, image, floorNo, blockName, apartmentNo, rent, status, userEmail } = apartment;
     const queryParams = new URLSearchParams(window.location.search);
     const selectedMonth = queryParams.get('month');
     const axiosSecure = useAxiosSecure();
@@ -37,20 +38,7 @@ const PayNow = () => {
     }, []);
 
 
-
-    useEffect(() => {
-        const fetchClientSecret = async () => {
-            try {
-                const response = await axiosSecure.post('/create-payment-intent', { discountedRent });
-                setClientSecret(response.data.clientSecret);
-            } catch (error) {
-                console.error("Error fetching client secret:", error);
-                // Handle the error as needed
-            }
-        };
-
-        fetchClientSecret();
-    }, [axiosSecure, discountedRent]);
+   
 
     const handleApplyCoupon = () => {
         const selectedCoupon = coupon.find((c) => c.code === couponCode);
@@ -80,14 +68,7 @@ const PayNow = () => {
 
     };
 
-    const appearance = {
-        theme: 'stripe',
-    };
 
-    const options = {
-        clientSecret,
-        appearance,
-    };
 
     return (
         <div>
@@ -96,7 +77,7 @@ const PayNow = () => {
                 <h3 className="text-white border-2 border-red-400">Rent = {rent}</h3>
                 <p className="text-white border-2 border-red-400 my-2">Have a Coupon? </p>
                 <input
-                className="py-2 border-2 border-red-400"
+                    className="py-2 border-2 border-red-400"
                     type="text"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
@@ -106,12 +87,11 @@ const PayNow = () => {
                 <button className="bg-red-400 text-white p-2 my-2" onClick={handleApplyCoupon}>Apply Coupon</button>
             </div>
             <div>
-
-                {clientSecret && (
-                    <Elements options={options} stripe={stripePromise}>
-                        <CheckoutForm />
-                    </Elements>
-                )}
+                <Elements stripe={stripePromise}>
+                    <CheckoutForm apartment={apartment}
+                        selectedMonth={selectedMonth}
+                        discountedRent={discountedRent} ></CheckoutForm>
+                </Elements>
             </div>
             <ToastContainer></ToastContainer>
         </div>

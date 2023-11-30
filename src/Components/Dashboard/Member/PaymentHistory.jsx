@@ -16,20 +16,21 @@ const PaymentHistory = () => {
     const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
 
-    // useEffect(() => {
-    //     axiosSecure.get('/payments')
-    //         .then((res) => {
-    //             setPayments(res.data);
-    //             setLoading(false);
-    //             console.log(res.data);
-    //         })
-    //         .catch((error) => {
-    //             console.error("Error fetching announcement:", error);
-    //             setLoading(false);
-    //         });
-    // }, []);
+    useEffect(() => {
+        axiosSecure.get(`/payments/${user.email}`)
+            .then((res) => {
+                setPayments(res.data);
+                setLoading(false);
+                console.log(res.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching announcement:", error);
+                setLoading(false);
+            });
+    }, []);
 
-    const myHistory = payments.filter(a => a.userEmail === user.email);
+    const myHistory = payments;
+    //const myHistory = payments.filter(a => a.userEmail === user.email);
     return (
         <div>
             <Helmet>
@@ -44,21 +45,23 @@ const PaymentHistory = () => {
                                 <TableCell  style={{ color: 'white' }}>Email</TableCell>
                                 <TableCell  style={{ color: 'white' }}>Floor</TableCell>
                                 <TableCell  style={{ color: 'white' }}>Block Name</TableCell>
-                                <TableCell  style={{ color: 'white' }}>paymentNo</TableCell>
-                                <TableCell  style={{ color: 'white' }}>Rent</TableCell>
+                                <TableCell  style={{ color: 'white' }}>ApartmentNo</TableCell>
+                                <TableCell  style={{ color: 'white' }}>status</TableCell>
                                 <TableCell  style={{ color: 'white' }}>Month</TableCell>
-                                <TableCell  style={{ color: 'white' }}>Pay Now</TableCell>
+                                <TableCell  style={{ color: 'white' }}>Paid Amount</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {myHistory.map((book) => (
-                                <TableRow  style={{ border: '1px solid #EF5350' }} key={book._id}>
-                                    <TableCell>{book.userEmail}</TableCell>
-                                    <TableCell>{book.floorNo}</TableCell>
-                                    <TableCell>{book.blockName}</TableCell>
-                                    <TableCell>{book.apartmentNo}</TableCell>
-                                    <TableCell>{book.rent}</TableCell>
-                                    <TableCell> add a month picker here</TableCell>
+                            {myHistory.map((paid) => (
+                                <TableRow  style={{ border: '1px solid #EF5350' }} key={paid._id}>
+                                    <TableCell>{paid.userEmail}</TableCell>
+                                    <TableCell>{paid.floorNo}</TableCell>
+                                    <TableCell>{paid.blockName}</TableCell>
+                                    <TableCell>{paid.apartmentNo}</TableCell>
+                                    <TableCell>{paid.status}</TableCell>
+                                    <TableCell>{paid.month}</TableCell>
+                                    <TableCell>{paid.rentPaid}</TableCell>
+                                    
                                     
                                 </TableRow>
                             ))}
