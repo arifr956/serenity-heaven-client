@@ -22,7 +22,7 @@ const Login = () => {
 
 
   const from = location.state?.from?.pathname || "/";
-  console.log('state in the location login page', location.state)
+  
 
 
 
@@ -72,6 +72,7 @@ const Login = () => {
               position: "top-center",
               autoClose:1500,
             });
+            console.log(location.state);
             navigate(location?.state ? location.state : '/');
             console.log(result.user);
           })

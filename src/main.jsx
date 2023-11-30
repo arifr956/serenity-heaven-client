@@ -108,12 +108,12 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/makePayment/payNow/:id",
         element: <MemberRoute><PayNow /></MemberRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params.id}`)
+        loader: ({ params }) => fetch(`https://serenity-heaven-server.vercel.app/apartments/${params.id}`)
       }
       // {
       //   path: "makePayment/payNow/:id",
       //   element: <MemberRoute><PayNow></PayNow></MemberRoute>,
-      //   loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params.id}`)
+      //   loader: ({ params }) => fetch(`https://serenity-heaven-server.vercel.app/apartments/${params.id}`)
       // }
 
 

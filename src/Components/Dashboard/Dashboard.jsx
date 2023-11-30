@@ -18,7 +18,7 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/adminHome">
+                <NavLink exact to="/dashboard/adminHome">
                   <FaRegUserCircle />
                   Admin Home
                 </NavLink>
@@ -51,7 +51,7 @@ const Dashboard = () => {
           ) : isMember ? (
             <>
               <li>
-                <NavLink to="/dashboard/memberHome">
+                <NavLink exact to="/dashboard/memberHome">
                   <FaRegUserCircle />
                   User Home
                 </NavLink>
@@ -78,7 +78,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="/dashboard/userHome">
+                <NavLink exact to="/dashboard/userHome">
                   <FaRegUserCircle />
                   User Profile
                 </NavLink>

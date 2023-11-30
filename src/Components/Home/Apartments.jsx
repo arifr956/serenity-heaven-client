@@ -6,7 +6,7 @@ import SectionTitle from "./SectionTitle";
 import SingleApartment from "./SingleApartment";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -19,6 +19,7 @@ const Apartments = () => {
   const [apartments] = useApartments();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const axiosSecure = useAxiosSecure();
 
   // Pagination
