@@ -103,7 +103,7 @@ const Dashboard = () => {
           <li>
             <NavLink to="/apartments">
               <FaWarehouse />
-              Menu
+              Apartments
             </NavLink>
           </li>
         </ul>
