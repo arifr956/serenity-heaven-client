@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaTrashAlt } from "react-icons/fa";
+import { Paper, Table, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 
 const ManageMember = () => {
   const axiosSecure = useAxiosSecure();
@@ -78,27 +79,30 @@ const ManageMember = () => {
         <h2 className="text-3xl">Total Users: {users.length}</h2>
       </div>
       <div className="overflow-x-auto">
-        <table className="table-auto w-full text-white bg-[#394251]">
-          {/* head */}
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+        
+
+        <TableContainer  component={Paper}>
+          
+          <Table>
+          <TableHead style={{ border: '1px solid #EF5350' }}>
+            <TableRow style={{ backgroundColor: '#2d2d2d' }}>
+              <TableCell  style={{ color: 'white' }}>#</TableCell>
+              <TableCell  style={{ color: 'white' }}>Name</TableCell>
+              <TableCell  style={{ color: 'white' }}>Email</TableCell>
+              <TableCell  style={{ color: 'white' }}>Role</TableCell>
+              <TableCell  style={{ color: 'white' }}>Action</TableCell>
+            </TableRow>
+          </TableHead>
           <tbody>
             {users.map((user, index) => (
-              <tr
+              <TableRow
                 key={user._id}
-                className={index % 2 === 0 ? 'bg-gray-700' : 'bg-gray-800'}
+                style={{ border: '1px solid #EF5350' , backgroundColor: '#394251' }}
               >
-                <th>{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
+                <TableCell  style={{ color: 'white' }}>{index + 1}</TableCell>
+                <TableCell  style={{ color: 'white' }}>{user.name}</TableCell>
+                <TableCell  style={{ color: 'white' }}>{user.email}</TableCell>
+                <TableCell  style={{ color: 'white' }}>
                   {user.role === 'admin' ? (
                     'Admin'
                   ) : user.role === 'member' ? (
@@ -111,19 +115,20 @@ const ManageMember = () => {
                   ) : (
                     'User'
                   )}
-                </td>
-                <td>
+                </TableCell>
+                <TableCell  style={{ color: 'white' }}>
                   <button
                     onClick={() => handleDeleteUser(user)}
                     className="btn btn-ghost btn-lg"
                   >
                     <FaTrashAlt className="bg-red-500 text-white"></FaTrashAlt>
                   </button>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
           </tbody>
-        </table>
+          </Table>
+        </TableContainer> 
       </div>
     </div>
   );
