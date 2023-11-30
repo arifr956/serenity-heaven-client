@@ -38,7 +38,7 @@ const Registration = () => {
                         console.log(res.data);
                         toast.success(`Successfully Logged In with Github!`, {
                             position: 'top-center',
-                            autoClose: 3000,
+                            autoClose: 1500,
                         });
                         navigate(location?.state ? location.state : '/');
                     })
@@ -63,7 +63,7 @@ const Registration = () => {
                         console.log(res.data);
                         toast.success(`Sucessfully Logged In with Google!`, {
                             position: "top-center",
-                            autoClose: 3000,
+                            autoClose: 1500,
                         });
                         navigate(location?.state ? location.state : '/');
                         console.log(result.user);
@@ -85,7 +85,7 @@ const Registration = () => {
         if (password.length < 6) {
             toast.error(`Password must be at least 6 characters long.`, {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 1500,
             });
             return;
         }
@@ -94,7 +94,7 @@ const Registration = () => {
         if (!/[A-Z]/.test(password)) {
             toast.error(`Password must contain at least one capital letter.`, {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 1500,
             });
             return;
         }
@@ -103,7 +103,7 @@ const Registration = () => {
         if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(password)) {
             toast.error(`Password must contain at least one special character.`, {
                 position: "top-center",
-                autoClose: 3000,
+                autoClose: 1500,
             });
             return;
         }
@@ -118,7 +118,7 @@ const Registration = () => {
                         console.log('user added to the database');
                         toast.success(`User created Sucessfully!`, {
                             position: "top-center",
-                            autoClose: 3000,
+                            autoClose: 1500,
                         });
                         navigate(location?.state ? location.state : '/');
 
@@ -134,7 +134,7 @@ const Registration = () => {
                                     console.log('user added to the database');
                                     toast.success(`User created Sucessfully!`, {
                                         position: "top-center",
-                                        autoClose: 3000,
+                                        autoClose: 1500,
                                     });
                                     navigate(location?.state ? location.state : '/');
                                 }

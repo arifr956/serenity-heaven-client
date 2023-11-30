@@ -106,10 +106,15 @@ const router = createBrowserRouter([
         element: <MemberRoute><MakePayment></MakePayment></MemberRoute>
       },
       {
-        path: "makePayment/payNow/:id",
-        element: <MemberRoute><PayNow></PayNow></MemberRoute>,
+        path: "/dashboard/makePayment/payNow/:id",
+        element: <MemberRoute><PayNow /></MemberRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params.id}`)
       }
+      // {
+      //   path: "makePayment/payNow/:id",
+      //   element: <MemberRoute><PayNow></PayNow></MemberRoute>,
+      //   loader: ({ params }) => fetch(`http://localhost:5000/apartments/${params.id}`)
+      // }
 
 
 

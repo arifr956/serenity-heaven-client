@@ -46,7 +46,7 @@ const Login = () => {
             console.log(res.data);
             toast.success(`Successfully Logged In with Github!`, {
               position: 'top-center',
-              autoClose: 3000,
+              autoClose:1500,
             });
             navigate(location?.state ? location.state : '/');
           })
@@ -70,7 +70,7 @@ const Login = () => {
             console.log(res.data);
             toast.success(`Sucessfully Logged In with Google!`, {
               position: "top-center",
-              autoClose: 3000,
+              autoClose:1500,
             });
             navigate(location?.state ? location.state : '/');
             console.log(result.user);
@@ -92,7 +92,7 @@ const Login = () => {
       .then(result => {
         toast.success(`Hi ! Welcome Back !`, {
           position: "top-center",
-          autoClose: 3000,
+          autoClose:1500,
         });
         navigate(from, { replace: true });
         console.log(result.user);
@@ -106,7 +106,7 @@ const Login = () => {
         ) {
           toast.error("Invalid email or password. Please try again.", {
             position: "top-center",
-            autoClose: 3000,
+            autoClose:1500,
           });
         }
 

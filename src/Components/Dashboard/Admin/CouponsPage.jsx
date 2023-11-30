@@ -129,10 +129,10 @@ const CouponsPage = () => {
         <Table>
           <TableHead style={{ border: '1px solid #EF5350' }}>
             <TableRow style={{ backgroundColor: '#394251' }}>
-              <TableCell>Coupon Code</TableCell>
-              <TableCell>Discount Percentage</TableCell>
-              <TableCell>Coupon Description</TableCell>
-              <TableCell>Action</TableCell>
+              <TableCell  style={{ color: 'white' }}>Coupon Code</TableCell>
+              <TableCell  style={{ color: 'white' }}>Discount Percentage</TableCell>
+              <TableCell  style={{ color: 'white' }}>Coupon Description</TableCell>
+              <TableCell  style={{ color: 'white' }}>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

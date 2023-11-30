@@ -41,13 +41,13 @@ const PaymentHistory = () => {
                     <Table>
                         <TableHead  style={{ border: '1px solid #EF5350' }}>
                             <TableRow style={{ backgroundColor: '#394251' }}>
-                                <TableCell>Email</TableCell>
-                                <TableCell>Floor</TableCell>
-                                <TableCell>Block Name</TableCell>
-                                <TableCell>paymentNo</TableCell>
-                                <TableCell>Rent</TableCell>
-                                <TableCell>Month</TableCell>
-                                <TableCell>Pay Now</TableCell>
+                                <TableCell  style={{ color: 'white' }}>Email</TableCell>
+                                <TableCell  style={{ color: 'white' }}>Floor</TableCell>
+                                <TableCell  style={{ color: 'white' }}>Block Name</TableCell>
+                                <TableCell  style={{ color: 'white' }}>paymentNo</TableCell>
+                                <TableCell  style={{ color: 'white' }}>Rent</TableCell>
+                                <TableCell  style={{ color: 'white' }}>Month</TableCell>
+                                <TableCell  style={{ color: 'white' }}>Pay Now</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
